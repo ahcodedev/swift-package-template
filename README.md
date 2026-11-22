@@ -26,9 +26,8 @@ The example source and test files are only created on first copy; updates do not
 
 ## Layout
 
-- `template/` - project skeleton rendered by Copier (`.jinja` files and paths are templated)
+- `template/` - project skeleton rendered by Copier
 - `copier.yml` - questions and template settings
-- Root `.github/`, `Brewfile`, `Makefile` and `prek.toml` - tooling for this template repository
 
 ## Generated Project
 
@@ -36,7 +35,7 @@ The generated package supports:
 
 - `Makefile` commands for setup, build, test, format, lint, Markdown lint, gitleaks, zizmor and template updates
 - GitHub Actions: build, unit tests, coverage threshold, format check, lint, Markdown lint, secret scanning (gitleaks), workflow audit (zizmor)
-- Release Drafter, Dependabot, pull request template and [prek](https://github.com/j178/prek) git hooks
+- Release Drafter, Dependabot, pull request template
 
 See [template/README.md.jinja](template/README.md.jinja) for details.
 
