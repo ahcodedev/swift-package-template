@@ -26,9 +26,8 @@ The example source and test files are only created on first copy; updates do not
 
 ## Layout
 
-- `template/` - project skeleton rendered by Copier (`.jinja` files and paths are templated)
+- `template/` - project skeleton rendered by Copier
 - `copier.yml` - questions and template settings
-- Root `.github/`, `Brewfile`, `Makefile` and `prek.toml` - tooling for this template repository
 
 ## Generated Project
 
@@ -36,7 +35,7 @@ The generated package supports:
 
 - `Makefile` commands for setup, build, test, format, lint, Markdown lint, gitleaks, zizmor and template updates
 - GitHub Actions: build, unit tests, coverage threshold, format check, lint, Markdown lint, secret scanning (gitleaks), workflow audit (zizmor)
-- Release Drafter, Dependabot, pull request template and [prek](https://github.com/j178/prek) git hooks
+- Release Drafter, Dependabot, pull request template
 
 See [template/README.md.jinja](template/README.md.jinja) for details.
 
@@ -51,7 +50,7 @@ See [template/README.md.jinja](template/README.md.jinja) for details.
 
 ## Releases
 
-Release notes are drafted automatically by [Release Drafter](https://github.com/release-drafter/release-drafter) as pull requests merge into `main`. Publishing a release creates the git tag that `copier update` uses.
+To publish, run the **Release** workflow from the Actions tab. It drafts release notes from the pull requests merged since the last release with [Release Drafter](https://github.com/release-drafter/release-drafter) and publishes them as a `vX.Y.Z` tag. Copier uses these tags as template versions, so changes merged to `main` reach projects only after a release.
 
 The next version is calculated from pull request labels:
 
