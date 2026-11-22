@@ -21,9 +21,12 @@ jobs:
       with:
         fetch-depth: 0
         persist-credentials: false
-    - name: Install Copier
+    - name: Install Copier and markdownlint-cli2
       working-directory: .
-      run: brew install copier
+      run: brew install copier markdownlint-cli2
+    - name: Lint template repo Markdown
+      working-directory: .
+      run: make markdownlint
     - name: Generate project
       working-directory: .
       run: make generate
@@ -35,3 +38,5 @@ jobs:
       run: make ci-format
     - name: Run Linter
       run: make ci-lint
+    - name: Lint Markdown
+      run: make markdownlint

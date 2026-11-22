@@ -41,3 +41,10 @@ name = "zizmor"
 entry = "zizmor"
 language = "system"
 files = '^\.github/(workflows/.+\.ya?ml|dependabot\.ya?ml)$'
+
+[[repos.hooks]]
+id = "markdownlint"
+name = "markdownlint"
+entry = "markdownlint-cli2"
+language = "system"
+types = ["markdown"]

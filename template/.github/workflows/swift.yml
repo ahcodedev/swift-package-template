@@ -44,3 +44,7 @@ jobs:
       run: make ci-format
     - name: Run Linter
       run: make ci-lint
+    - name: Install markdownlint-cli2
+      run: brew install markdownlint-cli2
+    - name: Lint Markdown
+      run: make markdownlint

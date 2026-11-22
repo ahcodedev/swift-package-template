@@ -1,4 +1,4 @@
-.PHONY: setup build test format ci-format lint ci-lint gitleaks zizmor update-template
+.PHONY: setup build test format ci-format lint ci-lint gitleaks zizmor update-template markdownlint
 
 setup:
 	brew bundle
@@ -17,6 +17,8 @@ ci-lint:
 	swift package plugin --allow-writing-to-package-directory swiftlint --strict
 gitleaks:
 	gitleaks git --redact --verbose
+markdownlint:
+	markdownlint-cli2 "**/*.md"
 zizmor:
 	zizmor .
 update-template:

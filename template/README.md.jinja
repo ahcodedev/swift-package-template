@@ -1,4 +1,4 @@
-# {{ project_name }} ![](https://github.com/{{ github_repo }}/actions/workflows/swift.yml/badge.svg?branch=main)
+# {{ project_name }} ![Swift](https://github.com/{{ github_repo }}/actions/workflows/swift.yml/badge.svg?branch=main)
 
 {{ description }}
 
@@ -14,6 +14,7 @@ Project supports a `Makefile`
 - Lint (auto-fix) - `make lint`
 - Lint (strict, same as CI) - `make ci-lint`
 - Scan git history for secrets ([gitleaks](https://github.com/gitleaks/gitleaks)) - `make gitleaks`
+- Lint Markdown ([markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2), config in `.markdownlint-cli2.jsonc`) - `make markdownlint`
 - Audit GitHub Actions workflows ([zizmor](https://docs.zizmor.sh)) - `make zizmor`
 - Pull updates from the [Copier](https://copier.readthedocs.io) template (requires a clean git tree) - `make update-template`
 
@@ -25,6 +26,7 @@ Project supports a `Makefile`
   - Code coverage threshold
   - Format check (swift-format)
   - Lint
+  - Markdown lint (markdownlint-cli2)
   - prek hooks
   - Secret scanning (gitleaks)
   - Workflow security audit (zizmor)
@@ -39,6 +41,7 @@ Project supports a `Makefile`
   - Whitespace, end-of-file, YAML, merge conflict and large file checks
   - swift-format and SwiftLint (strict) on commits that change Swift files
   - gitleaks on staged changes
+  - markdownlint on commits that change Markdown files
   - zizmor on commits that change workflows
 
 ## Setup Steps
