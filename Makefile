@@ -1,22 +1,15 @@
-.PHONY: setup build test format ci-format lint ci-lint gitleaks zizmor
+.PHONY: setup generate test-template gitleaks zizmor
 
-migrate:
-	swift Migrate.swift
+TEMPLATE_TEST_DIR ?= .build/template-test
+
 setup:
 	brew bundle
 	prek install
-build:
-	swift build
-test:
-	swift test
-format:
-	swift format --in-place --recursive --parallel .
-ci-format:
-	swift format lint --strict --recursive --parallel .
-lint:
-	swift package plugin --allow-writing-to-package-directory swiftlint --fix
-ci-lint:
-	swift package plugin --allow-writing-to-package-directory swiftlint --strict
+generate:
+	rm -rf $(TEMPLATE_TEST_DIR)
+	copier copy --vcs-ref=HEAD --defaults --data project_name=example-package . $(TEMPLATE_TEST_DIR)
+test-template: generate
+	$(MAKE) -C $(TEMPLATE_TEST_DIR) build test ci-format ci-lint
 gitleaks:
 	gitleaks git --redact --verbose
 zizmor:

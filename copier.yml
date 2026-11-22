@@ -1,0 +1,26 @@
+_subdirectory: template
+_min_copier_version: "9.0.0"
+_skip_if_exists:
+  - "Sources/{{ package_name }}/{{ package_name }}.swift"
+  - "Tests/{{ package_name }}Tests/{{ package_name }}Tests.swift"
+
+project_name:
+  type: str
+  help: Package name (lower-kebab-case)
+  validator: "{% if not (project_name | regex_search('^[a-z][a-z0-9]*(-[a-z0-9]+)*$')) %}Must be lower-kebab-case{% endif %}"
+
+package_name:
+  type: str
+  help: Library and target name (PascalCase)
+  default: "{{ project_name.replace('-', ' ').title().replace(' ', '') }}"
+  validator: "{% if not (package_name | regex_search('^[A-Z][A-Za-z0-9]*$')) %}Must be PascalCase{% endif %}"
+
+description:
+  type: str
+  help: Package description for the README
+  default: Package description here
+
+github_repo:
+  type: str
+  help: GitHub repository (owner/name) for README links
+  default: "ahcodedev/{{ project_name }}"

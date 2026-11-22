@@ -1,58 +1,56 @@
-# swift-package-template ![](https://github.com/ahcodedev/swift-package-template/actions/workflows/swift.yml/badge.svg?branch=main)
+# swift-package-template ![](https://github.com/ahcodedev/swift-package-template/actions/workflows/template.yml/badge.svg?branch=main)
 
-Baseline template for Swift packages
+[Copier](https://copier.readthedocs.io) template for Swift packages
 
-Package description here
+## Usage
+
+```sh
+brew install copier
+copier copy gh:ahcodedev/swift-package-template my-package
+cd my-package
+make setup
+```
+
+Questions (see `copier.yml`):
+
+| Question | Purpose | Default |
+| --- | --- | --- |
+| `project_name` | Package name (lower-kebab-case) | none |
+| `package_name` | Library, target and directory names (PascalCase) | `project_name` in PascalCase |
+| `description` | README description | `Package description here` |
+| `github_repo` | `owner/name` for the README badge | `ahcodedev/<project_name>` |
+
+Generated projects include `.copier-answers.yml`. Run `make update-template` in a generated project with a clean git tree to pull template changes. Updates are taken from the latest git tag, so tag each template release.
+
+The example source and test files are only created on first copy; updates do not overwrite them.
+
+## Layout
+
+- `template/` - project skeleton rendered by Copier (`.jinja` files and paths are templated)
+- `copier.yml` - questions and template settings
+- Root `.github/`, `Brewfile`, `Makefile` and `prek.toml` - tooling for this template repository
+
+## Generated Project
+
+The generated package supports:
+
+- `Makefile` commands for setup, build, test, format, lint, gitleaks, zizmor and template updates
+- GitHub Actions: build, unit tests, coverage threshold, format check, lint, secret scanning (gitleaks), workflow audit (zizmor)
+- Release Drafter, Dependabot, pull request template and [prek](https://github.com/j178/prek) git hooks
+
+See [template/README.md.jinja](template/README.md.jinja) for details.
 
 ## Commands
 
-Project supports a `Makefile`
-
 - Setup (installs [Homebrew](https://brew.sh) tools from `Brewfile` and git hooks) - `make setup`
-- Build - `make build`
-- Test - `make test`
-- Format ([swift-format](https://github.com/swiftlang/swift-format), config in `.swift-format`) - `make format`
-- Check formatting (strict, same as CI) - `make ci-format`
-- Lint (auto-fix) - `make lint`
-- Lint (strict, same as CI) - `make ci-lint`
+- Generate an example project into `.build/template-test` from the working tree - `make generate`
+- Generate and build, test, format check and lint the example project - `make test-template`
 - Scan git history for secrets ([gitleaks](https://github.com/gitleaks/gitleaks)) - `make gitleaks`
 - Audit GitHub Actions workflows ([zizmor](https://docs.zizmor.sh)) - `make zizmor`
 
-## Supports
-
-- Github Actions
-  - Build
-  - Unit test
-  - Code coverage threshold
-  - Format check (swift-format)
-  - Lint
-  - prek hooks
-  - Secret scanning (gitleaks)
-  - Workflow security audit (zizmor)
-- Release Drafter
-  - Drafts the next GitHub Release as pull requests merge into `main`
-  - Auto-labels pull requests from branch name, title and changed files
-- Dependabot
-  - Weekly updates for GitHub Actions (grouped, SHA pins) and Swift packages
-  - 7 day cooldown before adopting new releases
-- Pull request template
-- [prek](https://github.com/j178/prek) git hooks (`prek.toml`)
-  - Whitespace, end-of-file, YAML, merge conflict and large file checks
-  - swift-format and SwiftLint (strict) on commits that change Swift files
-  - gitleaks on staged changes
-  - zizmor on commits that change workflows
-
-## Setup Steps
-
-- Run `make migrate` to rename the project, library, targets, directories and example files (the script and its `Makefile` target remove themselves when done)
-- Update the badge URL owner for the new repository location
-- Run `make setup` to install tools and git hooks
-- Add application and test files
-- Update this `README.md` file
-
 ## Releases
 
-Release notes are drafted automatically by [Release Drafter](https://github.com/release-drafter/release-drafter) as pull requests merge into `main`. To publish a release, review the draft on the GitHub Releases page and click **Publish**.
+Release notes are drafted automatically by [Release Drafter](https://github.com/release-drafter/release-drafter) as pull requests merge into `main`. Publishing a release creates the git tag that `copier update` uses.
 
 The next version is calculated from pull request labels:
 
@@ -63,5 +61,3 @@ The next version is calculated from pull request labels:
 | `bug` | Bug Fixes | patch |
 | `dependencies` | Dependencies | patch |
 | `ignore-for-release` | Excluded | none |
-
-Labels are applied automatically from the branch name (`feature/...`, `fix/...`, `docs/...`) or a conventional PR title (`feat:`, `fix:`, `feat!:`), and can be set manually.
