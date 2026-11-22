@@ -50,7 +50,7 @@ See [template/README.md.jinja](template/README.md.jinja) for details.
 
 ## Releases
 
-Release notes are drafted automatically by [Release Drafter](https://github.com/release-drafter/release-drafter) as pull requests merge into `main`. Publishing a release creates the git tag that `copier update` uses.
+To publish, run the **Release** workflow from the Actions tab. It drafts release notes from the pull requests merged since the last release with [Release Drafter](https://github.com/release-drafter/release-drafter) and publishes them as a `vX.Y.Z` tag. Copier uses these tags as template versions, so changes merged to `main` reach projects only after a release.
 
 The next version is calculated from pull request labels:
 
