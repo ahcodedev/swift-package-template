@@ -1,0 +1,7 @@
+{
+  "config": {
+    // Allow long lines in prose, links and tables
+    "MD013": false
+  },
+  "ignores": [".build/**", ".github/pull_request_template.md", "template/**"]
+}

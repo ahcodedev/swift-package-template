@@ -1,0 +1,9 @@
+import Testing
+
+@testable import {{ package_name }}
+
+@Suite struct {{ package_name }}Tests {
+    @Test func defaultText() {
+        #expect({{ package_name }}().text == "Hello, World!")
+    }
+}

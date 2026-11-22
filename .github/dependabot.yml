@@ -2,7 +2,7 @@ version: 2
 
 updates:
   - package-ecosystem: github-actions
-    directory: /
+    directories: [ "/", "/template" ]
     schedule:
       interval: weekly
     cooldown:
@@ -10,10 +10,3 @@ updates:
     groups:
       github-actions:
         patterns: [ "*" ]
-
-  - package-ecosystem: swift
-    directory: /
-    schedule:
-      interval: weekly
-    cooldown:
-      default-days: 7

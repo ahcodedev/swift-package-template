@@ -1,3 +1,5 @@
 brew "prek"
 brew "gitleaks"
 brew "zizmor"
+brew "copier"
+brew "markdownlint-cli2"

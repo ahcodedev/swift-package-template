@@ -6,14 +6,14 @@ import PackageDescription
 let skipPlugins: Bool = ProcessInfo.processInfo.environment["SKIP_PLUGINS"] != nil
 
 let package = Package(
-    name: "swift-package-template",
+    name: "{{ project_name }}",
     platforms: [
         .macOS(.v12)
     ],
     products: [
         .library(
-            name: "SwiftPackageTemplate",
-            targets: ["SwiftPackageTemplate"]
+            name: "{{ package_name }}",
+            targets: ["{{ package_name }}"]
         )
     ],
     dependencies: [
@@ -21,7 +21,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "SwiftPackageTemplate",
+            name: "{{ package_name }}",
             dependencies: [],
             plugins: skipPlugins
                 ? []
@@ -30,8 +30,8 @@ let package = Package(
                 ]
         ),
         .testTarget(
-            name: "SwiftPackageTemplateTests",
-            dependencies: ["SwiftPackageTemplate"],
+            name: "{{ package_name }}Tests",
+            dependencies: ["{{ package_name }}"],
             plugins: skipPlugins
                 ? []
                 : [
